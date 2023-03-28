@@ -1,21 +1,10 @@
-import { useState, useEffect } from 'react';
-import { getAllMovies } from '../../services/movieService';
+import { useMovieContext } from '../../contexts/MovieContext';
 import CatalogItem from './CatalogItem/CatalogItem';
 
 export default function Catalog() {
-    const [movies, setMovies] = useState([]);
-
-    useEffect(() => {
-        getAllMovies()
-            .then(result => {
-                // console.log(result);
-                setMovies(result);
-            });
-    }, []);
-
+    const  { movies } = useMovieContext();
 
     return (
-        // < !--Catalog page-- >
         <section id="catalog">
             <h2>Movies Collection</h2>
             {movies.map(m => <CatalogItem key={m._id} {...m} />)}
@@ -24,5 +13,7 @@ export default function Catalog() {
         </section>
     );
 }
+
+
 
 
