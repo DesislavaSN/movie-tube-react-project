@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getById } from '../../services/movieService';
+import { useMovieContext } from '../../contexts/MovieContext';
+import { movieServiceFactory } from '../../services/movieService';
+import { useService } from '../../services/useService';
 
 export default function Details() {
     const {movieId} = useParams();
-    // console.log(movieId);
+    const movieService = useService(movieServiceFactory);
+    const { userId, isAuthenticated } = useMovieContext();
     const [movie, setMovie] = useState({});
 
+    const isOwner = userId === movie._ownerId;
+    console.log('Movie Owner:', movie._ownerId);
+    console.log('User ID:', userId);
+    // console.log('Is Owner >>>', isOwner);
+
     useEffect(() => {
-        getById(movieId)
+        movieService.getById(movieId)
             .then(result => {
-                console.log(result.casts.join(', '));
-                const allCasts = result.casts.join(', ');
                 setMovie(result);
             });
     }, [movieId]);
@@ -52,13 +58,15 @@ export default function Details() {
                     </div>
                 </div>
 
-                {/* <!--Edit and Delete are only for creator--> */}
                 <div id="action-buttons">
-                    <Link to="/catalog/moveId/edit" id="edit-btn">Edit</Link>
-                    <Link to="/catalog/moveId/delete" id="delete-btn">Delete</Link>
-
-                    {/* <!--Bonus - Only for logged-in users ( not authors )--> */}
-                    <Link to="/catalog/moveId/comments" id="apply-btn">Comments</Link>
+                    {isOwner ? (
+                        <>
+                            <Link to="/catalog/moveId/edit" id="edit-btn">Edit</Link>
+                            <Link to="/catalog/moveId/delete" id="delete-btn">Delete</Link>
+                        </>
+                    ) : (
+                        <Link to="/catalog/moveId/comments" id="apply-btn">Comments</Link>
+                    )}
                 </div>
 
                 <section id="comments">
