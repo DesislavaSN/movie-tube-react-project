@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     async function onLogout() {
         await authService.logout();
         setAuth({});
-        window.localStorage.clear();
+        localStorage.clear();
     }
 
     const contextData = {
