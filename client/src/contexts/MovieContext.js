@@ -8,7 +8,6 @@ export const MovieContext = createContext();
 export const MovieProvider = ({ children}) => {
     const movieService = movieServiceFactory();
     const navigate = useNavigate();
-
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -25,10 +24,22 @@ export const MovieProvider = ({ children}) => {
         navigate('/catalog');
     }
 
+    const onEditMovieSubmit = async (data) => {
+        const editMovie = await movieService.edit(data._id, data);
+        console.log(editMovie);
+        setMovies(state => state.map(s => s._id === data._id ? editMovie : s));
+        navigate(`/catalog/${data._id}`);
+    };
+
+    const onDeleteMovieSubmit = (movieId) => {
+        setMovies(state => state.filter(movie => movie._id !== movieId));
+    }
+
     const contextMovie = {
         onCreateMovieSubmit,
+        onDeleteMovieSubmit,
+        onEditMovieSubmit,
         movies,
-
     }
 
     return (
