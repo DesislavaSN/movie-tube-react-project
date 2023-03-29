@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+
 import { useAuthContext } from '../../contexts/AuthContext';
+import { useMovieContext } from '../../contexts/MovieContext';
 import { movieServiceFactory } from '../../services/movieService';
 import { useService } from '../../services/useService';
+import DeleteConfirm from './DeleteConfirm/DeleteConfirm';
+
+import Review from './Review/Review';
 
 export default function Details() {
-    const {movieId} = useParams();
+    const { movieId } = useParams();
+    const navigate = useNavigate();
     const movieService = useService(movieServiceFactory);
     const { userId, isAuthenticated } = useAuthContext();
+    const { onDeleteMovieSubmit } = useMovieContext();
     const [movie, setMovie] = useState({});
-
     const isOwner = userId === movie._ownerId;
-    console.log('Movie Owner:', movie._ownerId);
-    console.log('User ID:', userId);
-    // console.log('Is Owner >>>', isOwner);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
     useEffect(() => {
         movieService.getById(movieId)
@@ -21,6 +25,21 @@ export default function Details() {
                 setMovie(result);
             });
     }, [movieId]);
+
+    
+    const onDeleteClick = () => {
+        setShowDeleteConfirm(true);
+    };
+
+    const onDeleteMovie = async () => {
+        await movieService.deleteMovie(movieId);
+        onDeleteMovieSubmit(movieId);
+        navigate('/catalog');
+    };
+
+    const onClose = () => {
+        setShowDeleteConfirm(false);
+    };
 
     return (
         <section id="details">
@@ -39,11 +58,6 @@ export default function Details() {
                             <span>
                                 <ul>
                                     <li>{movie.casts}</li>
-                                    {/* <li>Rebecca Field</li>
-                                    <li>Bradley Cooper</li>
-                                    <li>Marlon Williams</li>
-                                    <li>Anthony Ramos</li>
-                                    <li>Rafi Gavron</li> */}
                                     <li>And more...</li>
                                 </ul>
                             </span>
@@ -58,31 +72,22 @@ export default function Details() {
                     </div>
                 </div>
 
-                <div id="action-buttons">
-                    {isOwner ? (
+                {showDeleteConfirm && <DeleteConfirm movie={movie} onDeleteMovie={onDeleteMovie} onClose={onClose}/> }
+                
+                {isOwner && (
+                    <div id="action-buttons">
                         <>
-                            <Link to="/catalog/moveId/edit" id="edit-btn">Edit</Link>
-                            <Link to="/catalog/moveId/delete" id="delete-btn">Delete</Link>
+                            <Link to={`/catalog/${movieId}/edit`} id="edit-btn">Edit</Link>
+                            <Link id="delete-btn" onClick={onDeleteClick}>Delete</Link>
                         </>
-                    ) : (
-                        <Link to="/catalog/moveId/comments" id="apply-btn">Comments</Link>
-                    )}
-                </div>
-
-                <section id="comments">
-                    <div className="form">
-                        <h2>Leave your review</h2>
-                        <form className="login-form">
-                            <input type="text" name="username" id="username" placeholder="Username" />
-                            <textarea id="description" name="description" placeholder="Review" rows="4" cols="50"></textarea>
-                            <button type="submit">Submit</button>
-                        </form>
                     </div>
-                </section>
+                )}
+
+                {(!isOwner && isAuthenticated) && <Review />}
 
                 <section id="all-comments">
                     <div className="form">
-                        <h3>All Comments:</h3>
+                        <h3>All Reviews:</h3>
                         <p>Desi: This Movie is amazing!This Movie is amazing!This Movie is amazing!This Movie is amazing!This
                             Movie is amazing!This Movie is amazing!This Movie is amazing!This Movie is amazing!This Movie is
                             amazing!</p>
@@ -94,7 +99,6 @@ export default function Details() {
                         {/* <!-- If there are no comments yet... --> */}
                         {/* <!-- <p>No comments yet!</p> --> */}
                     </div>
-
                 </section>
             </div>
         </section>
