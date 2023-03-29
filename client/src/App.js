@@ -21,7 +21,6 @@ function App() {
 
         <main>
           <Routes>
-            <Route></Route>
             <Route path='/' element={<Home />} />
             <Route path='/catalog' element={<Catalog />} />
             <Route path='/register' element={<Register />} />
