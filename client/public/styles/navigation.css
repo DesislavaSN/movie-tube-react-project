@@ -51,7 +51,9 @@ nav a:hover {
 }
 
 nav .user span {
-  color: #fff;
+  color: #e2f705;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 header a {
