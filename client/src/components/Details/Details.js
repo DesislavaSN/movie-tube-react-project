@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useMovieContext } from '../../contexts/MovieContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { movieServiceFactory } from '../../services/movieService';
 import { useService } from '../../services/useService';
 
 export default function Details() {
     const {movieId} = useParams();
     const movieService = useService(movieServiceFactory);
-    const { userId, isAuthenticated } = useMovieContext();
+    const { userId, isAuthenticated } = useAuthContext();
     const [movie, setMovie] = useState({});
 
     const isOwner = userId === movie._ownerId;
