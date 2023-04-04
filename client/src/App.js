@@ -1,5 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 
+import { AuthProvider } from './contexts/AuthContext';
+import { MovieProvider } from './contexts/MovieContext';
+
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
@@ -10,30 +13,40 @@ import CreateMovie from './components/CreateMovie/CreateMovie';
 import Details from './components/Details/Details';
 import EditMovie from './components/EditMovie/EditMovie';
 import Logout from './components/Logout/Logout';
+import Profile from './components/Profile/Profile';
+import Error404 from './components/Error404/Error404';
+import RouteGuard from './common/RouteGuard';
 
-import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
     <AuthProvider>
-      <div id="wrapper">
-        <Header />
+      <MovieProvider>
+        <div id="wrapper">
+          <Header />
 
-        <main>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/catalog' element={<Catalog />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/logout' element={<Logout />} />
-            <Route path='/create-movie' element={<CreateMovie />} />
-            <Route path='/catalog/:movieId' element={<Details />} />
-            <Route path='/catalog/:movieId/edit' element={<EditMovie />} />
-          </Routes>
-        </main>
+          <main>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/catalog' element={<Catalog />} />
+              <Route path='/catalog/:movieId' element={<Details />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/login' element={<Login />} />
 
-      </div>
-      <Footer />
+              <Route element={<RouteGuard /> }>
+                <Route path='/logout' element={<Logout />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/create-movie' element={<CreateMovie />} />
+                <Route path='/catalog/:movieId/edit' element={<EditMovie />} />
+              </Route>
+              
+              <Route path='*' element={<Error404 />} />
+            </Routes>
+          </main>
+
+        </div>
+        <Footer />
+      </MovieProvider>
     </AuthProvider>
   );
 }
