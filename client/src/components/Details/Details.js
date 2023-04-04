@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import styles from './Details.module.css';
 
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useMovieContext } from '../../contexts/MovieContext';
+
+import { createReview, getAllReviews } from '../../services/commentsService';
 import { movieServiceFactory } from '../../services/movieService';
 import { useService } from '../../services/useService';
-import DeleteConfirm from './DeleteConfirm/DeleteConfirm';
 
+import DeleteConfirm from './DeleteConfirm/DeleteConfirm';
 import Review from './Review/Review';
 
 export default function Details() {
@@ -18,11 +21,21 @@ export default function Details() {
     const [movie, setMovie] = useState({});
     const isOwner = userId === movie._ownerId;
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-
+    
     useEffect(() => {
-        movieService.getById(movieId)
-            .then(result => {
+        Promise.all([
+            movieService.getById(movieId),
+            getAllReviews(movieId)
+        ])
+            .then(([movieData, commentsData]) => {
+                const result = {
+                    ...movieData,
+                    comments: commentsData
+                };
                 setMovie(result);
+            })
+            .catch(error => {
+                console.log('Details error >>>', error);
             });
     }, [movieId]);
 
@@ -41,19 +54,31 @@ export default function Details() {
         setShowDeleteConfirm(false);
     };
 
+    const onReviewSubmit = async (data) => {
+        const result = await createReview(movieId, data);
+
+        setMovie(state => ({
+            ...state,
+            comments: [
+                ...state.comments,
+                {...result}
+            ]
+        }));
+    };
+
     return (
-        <section id="details">
-            <div id="details-wrapper">
-                <div id="main-details-wrapper">
-                    <img id="details-img" src={movie.imageUrl} alt={movie.title} />
-                    <div id="movie-short-info">
-                        <p id="details-title">{movie.title}</p>
+        <section id={styles.details}>
+            <div id={styles.detailsWrapper}>
+                <div id={styles.mainDetailsWrapper}>
+                    <img src={movie.imageUrl} alt={movie.title} />
+                    <div id={styles.movieShortInfo}>
+                        <p id={styles.detailsTitle}>{movie.title}</p>
                         <p>Genre: <span>{movie.genre}</span></p>
                         <p>Country: <span>{movie.country}</span></p>
                         <p>Year: <span>{movie.year}</span></p>
                         <p>Duration: <span>{movie.duration} min</span></p>
 
-                        <div id="details-casts">
+                        <div id={styles.detailsCasts}>
                             <h3>Casts</h3>
                             <span>
                                 <ul>
@@ -65,8 +90,8 @@ export default function Details() {
                     </div>
                 </div>
 
-                <div id="info-wrapper">
-                    <div id="details-description">
+                <div id={styles.infoWrapper}>
+                    <div id={styles.detailsDescription}>
                         <h3>Description</h3>
                         <p>{movie.description}</p>
                     </div>
@@ -75,29 +100,34 @@ export default function Details() {
                 {showDeleteConfirm && <DeleteConfirm movie={movie} onDeleteMovie={onDeleteMovie} onClose={onClose}/> }
                 
                 {isOwner && (
-                    <div id="action-buttons">
+                    <div id={styles.actionButtons}>
                         <>
-                            <Link to={`/catalog/${movieId}/edit`} id="edit-btn">Edit</Link>
-                            <Link id="delete-btn" onClick={onDeleteClick}>Delete</Link>
+                            <Link to={`/catalog/${movieId}/edit`} id="edit-btn" className={styles.linkBtn}>Edit</Link>
+                            <Link id="delete-btn" className={styles.linkBtn} onClick={onDeleteClick}>Delete</Link>
                         </>
                     </div>
                 )}
 
-                {(!isOwner && isAuthenticated) && <Review />}
+                {(!isOwner && isAuthenticated) && <Review onReviewSubmit={onReviewSubmit} />}
 
-                <section id="all-comments">
-                    <div className="form">
+                <section id={styles.allComments}>
+                    <div className={styles.form}>
                         <h3>All Reviews:</h3>
-                        <p>Desi: This Movie is amazing!This Movie is amazing!This Movie is amazing!This Movie is amazing!This
-                            Movie is amazing!This Movie is amazing!This Movie is amazing!This Movie is amazing!This Movie is
-                            amazing!</p>
-                        <hr />
-                        <p>Eva: Another great comment</p>
-                        <hr />
-                        <p>Peter: Another great comment</p>
+                        {movie.comments && Object.values(movie.comments).map(c => {
+                            return (
+                                <Fragment  key={c._id}>
+                                    <p><em>{c.data.username}</em>: {c.data.comments}</p>
+                                    <hr />
+                                </Fragment>
+                            );
+                        })}
 
+                        
                         {/* <!-- If there are no comments yet... --> */}
-                        {/* <!-- <p>No comments yet!</p> --> */}
+                        {!movie.comments?.length && (
+                            <p>No comments yet!</p>
+                        )}
+
                     </div>
                 </section>
             </div>
