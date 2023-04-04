@@ -1,0 +1,66 @@
+
+#delConfirm {
+    width: 500px;
+    height: 60px;
+    margin: 0 auto 40px auto;
+}
+
+.form {
+    margin-top: 0;
+    position: relative;
+    padding: 27px;
+    background-color: rgb(242, 240, 210);
+    max-width: 420px;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+h4 {
+    font-weight: 200;
+    color: rgb(89, 88, 88);
+}
+
+span {
+    font-weight: 500;
+    color: #000;
+}
+
+.confBtnDel {
+    background-color: rgb(242, 240, 210);
+    border: 1px solid rgb(89, 88, 88);
+    border-radius: 5px;
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    height: 35px;
+    width: 75px;
+    padding: 0;
+    margin: 0 16px;
+}
+
+.confBtnDel:hover{
+    font-size: 16px;
+    padding: 4px;
+}
+
+.confBtnCancel {
+    background-color: rgb(242, 240, 210);
+    border: 1px solid rgb(89, 88, 88);
+    border-radius: 5px;
+    color: green;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    height: 35px;
+    width: 75px;
+    padding: 0;
+    margin: 0 10px;
+}
+
+.confBtnCancel:hover{
+    font-size: 16px;
+    padding: 4px;
+}
