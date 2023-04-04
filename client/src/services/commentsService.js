@@ -1,23 +1,24 @@
-import { get, post } from './requester';
+import { requestFactory } from './requester';
 
 const baseUrl = 'http://localhost:3030/data/comments';
+const request = requestFactory();
 
-async function getAllComments(gameId) {
-    const query = encodeURIComponent(`gameId="${gameId}"`);
-    const result = await get(`${baseUrl}?where=${query}`);
-    const comments = Object.values(result);
-    console.log(comments);
-    return comments;
+async function getAllReviews(movieId) {
+    const searchQuery = encodeURIComponent(`movieId="${movieId}"`);
+    const relationQuery = encodeURIComponent('author=_ownerId:users');
+    const result = await request.get(`${baseUrl}?where=${searchQuery}&load=${relationQuery}`);
+
+    const reviews = Object.values(result);
+    return reviews;
 };
 
-async function createComment(data) {
-    const result = await post(baseUrl, data);
-    console.log(result);
+async function createReview(id, data) {
+    const result = await request.post(baseUrl, {id, data});
     return result;
 };
 
 export {
-    getAllComments,
-    createComment,
+    getAllReviews,
+    createReview,
 
 };
