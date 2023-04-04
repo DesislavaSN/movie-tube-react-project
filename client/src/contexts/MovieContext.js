@@ -18,7 +18,6 @@ export const MovieProvider = ({ children}) => {
     }, []);
 
     const onCreateMovieSubmit = async (data) => {
-        // console.log(data);
         const newMovie = await movieService.create(data);
         setMovies(state => [...state, newMovie]);
         navigate('/catalog');
@@ -26,7 +25,6 @@ export const MovieProvider = ({ children}) => {
 
     const onEditMovieSubmit = async (data) => {
         const editMovie = await movieService.edit(data._id, data);
-        console.log(editMovie);
         setMovies(state => state.map(s => s._id === data._id ? editMovie : s));
         navigate(`/catalog/${data._id}`);
     };
