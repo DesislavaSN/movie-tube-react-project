@@ -1,0 +1,79 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+section#create{
+    margin-bottom: 100px;
+}
+
+.form {
+  background: #ffffff;
+  max-width: 460px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 45px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form h2 {
+  margin-bottom: 50px;
+  font-size: 30px;
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background-color: rgb(242, 240, 210);
+  width: 100%;
+  height: 50px;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.form textarea {
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 5px;
+  width: 99%;
+  max-width: 99%;
+  min-width: 99%;
+  min-height: 50px;
+  margin-bottom: 10px;
+  background-color: rgb(242, 240, 210);;
+
+}
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  background: #f3eb04;
+  color: #0c0c0c;
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+  font-size: 17px;
+  transition: 0.4s;
+}
+
+.err {
+  color: red;
+  font-weight: 200;
+  font-style: italic;
+  font-size: 14px;
+}
