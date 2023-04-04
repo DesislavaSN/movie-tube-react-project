@@ -14,8 +14,6 @@ export default function useForm(initialValues, onSubmitHandler) {
     }
 
     function onChangeValues(newValues) {
-        // TODO: Validate newValues shape (like initialValues);
-
         setFormValues(newValues);
     }
 
