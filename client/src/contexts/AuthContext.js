@@ -5,21 +5,29 @@ import authServiceFactory from '../services/authServices';
 
 export const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
 
     const [auth, setAuth] = useLocalStorage('auth', {});
     const navigate = useNavigate();
     const authService = authServiceFactory(auth.accessToken);
 
     async function onLoginSubmit(data) {
+        
+        const {email, password} = data;
+        if (email === '' || password === '') {
+            alert('Valid email & password are required!');
+            return;
+        }
+
         try {
             const result = await authService.login(data);
             // console.log('Login result:', result);
             setAuth(result);
             navigate('/catalog');
         } catch (error) {
-            console.log('Email ot password do not match!');
             console.log('Login error>>>', error);
+            alert(error.message);
+            return;
         }
     }
 
@@ -31,10 +39,13 @@ export function AuthProvider({ children }) {
 
         try {
             const result = await authService.register(registerData);
+            // console.log('Register result:', result);
             setAuth(result);
             navigate('/catalog');
         } catch (error) {
             console.log('Register error >>>', error);
+            alert(error.message);
+            return;
         }
     }
 
@@ -51,6 +62,7 @@ export function AuthProvider({ children }) {
         userId: auth._id,
         token: auth.accessToken,
         userEmail: auth.email,
+        username: auth.username,
         isAuthenticated: !!auth.accessToken
     };
 
@@ -61,9 +73,10 @@ export function AuthProvider({ children }) {
             </AuthContext.Provider>
         </>
     );
-}
+};
 
-export function useAuthContext () {
+export const useAuthContext = () => {
     const context = useContext(AuthContext);
     return context;
-}
+};
+
