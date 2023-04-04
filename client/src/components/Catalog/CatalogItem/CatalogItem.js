@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import styles from '../Catalog.module.css';
 
 export default function CatalogItem({
     _id,
@@ -8,11 +9,11 @@ export default function CatalogItem({
     year
 }) {
     return (
-        <div className="movie">
+        <div className={styles.movie}>
             <img src={imageUrl} alt={title} />
-            <p>Director: <strong><span className="director">{director}</span></strong></p>
-            <p>Year: <strong><span className="year">{year}</span></strong></p>
-            <Link to={`/catalog/${_id}`} className="details-btn">Details</Link>
+            <p>Director: <strong><span>{director}</span></strong></p>
+            <p>Year: <strong><span>{year}</span></strong></p>
+            <Link to={`/catalog/${_id}`} className={styles.detailsBtn}>Details</Link>
         </div>
     );
 }
