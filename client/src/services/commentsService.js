@@ -3,8 +3,8 @@ import { requestFactory } from './requester';
 const baseUrl = 'http://localhost:3030/data/comments';
 const request = requestFactory();
 
-async function getAllReviews(movieId) {
-    const searchQuery = encodeURIComponent(`movieId="${movieId}"`);
+async function getAllReviews(id) {
+    const searchQuery = encodeURIComponent(`movieId="${id}"`);
     const relationQuery = encodeURIComponent('author=_ownerId:users');
     const result = await request.get(`${baseUrl}?where=${searchQuery}&load=${relationQuery}`);
 
