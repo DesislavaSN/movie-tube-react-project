@@ -9,7 +9,7 @@ In this app you can get registered, upload your favorite movies and leave some b
   
   - [Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code")
   - [ReactJS] (https://react.dev/)
-  - SoftUni Practice Server
+  - ]SoftUni Practice Server] (https://github.com/softuni-practice-server/softuni-practice-server)
   - NPM Packages:
-    - react js
-    - react-router-dom
+    - [react js] (https://www.npmjs.com/package/react)
+    - [react-router-dom](https://reactrouter.com/en/main/start/tutorial)
