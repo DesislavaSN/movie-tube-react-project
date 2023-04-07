@@ -17,9 +17,9 @@ In this app you can get registered, upload your favorite movies and leave some b
   --------------------------------------
   
  <h4> How to run the app </h4>
-    - cd client
-    - npm i
-    - npm start
+  - cd client
+  - npm i
+  - npm start
  <h4> How to run the server </h4>
-    - cd server
-    - node server.js
+  - cd server
+  - node server.js
