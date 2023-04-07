@@ -16,10 +16,10 @@ In this app you can get registered, upload your favorite movies and leave some b
 
   --------------------------------------
   
-- How to run the app
+-> How to run the app
  - cd client
  - npm i
  - npm start
-- How to run the server 
+-> How to run the server 
  - cd server
  - node server.js
