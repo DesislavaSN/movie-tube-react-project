@@ -3,7 +3,7 @@ import styles from './Footer.module.css';
 export default function Footer() {
     return (
         <footer>
-            <p>&copy; Movies Tube</p>
+            <p  className={styles.footer}>&copy; Created by Desislava Nedeva - Movies Tube Project with React</p>
         </footer>
     );
 };
