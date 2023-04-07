@@ -14,14 +14,18 @@ In this app you can get registered, upload your favorite movies and leave some b
     - [react js](https://www.npmjs.com/package/react)
     - [react-router-dom](https://reactrouter.com/en/main/start/tutorial)
 
-  --------------------------------------
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <h3>Start the application </h3>  
 
-- How to run app:
+- How to run the app:
   - cd client
   - npm install
   - npm start
-- How to run server:
+- How to run the server:
   - cd server
   - node server.js
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  <h3>Preview</h3>
+  
