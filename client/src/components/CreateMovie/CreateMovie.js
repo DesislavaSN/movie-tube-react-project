@@ -50,7 +50,7 @@ export default function CreateMovie() {
         setError(state => ({...state, [name]: !match}));
     }
 
-    const isValid = !Object.values(error).some(x => x);
+    const isValid = !Object.values(error).some(x => x || x === '');
 
     return (
         <section id={styles.create}>
