@@ -16,11 +16,12 @@ In this app you can get registered, upload your favorite movies and leave some b
 
   --------------------------------------
 <h3>Start the application </h3>  
-  
-- How to run server:
-  - cd server
-  - node server.js
+
 - How to run app:
   - cd client
   - npm install
   - npm start
+- How to run server:
+  - cd server
+  - node server.js
+
