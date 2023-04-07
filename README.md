@@ -6,7 +6,7 @@ In this app you can get registered, upload your favorite movies and leave some b
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Build with: 
-  - Visual Studio Code
+  - [Visual] Visual Studio Code
   - ReactJs
   - SoftUni Practice Server
   - NPM Packages:
