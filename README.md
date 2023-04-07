@@ -15,6 +15,7 @@ In this app you can get registered, upload your favorite movies and leave some b
     - [react-router-dom](https://reactrouter.com/en/main/start/tutorial)
 
   --------------------------------------
+<h3>Start the application </h3>  
   
 - How to run server:
   - cd server
