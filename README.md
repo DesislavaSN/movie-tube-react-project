@@ -37,3 +37,24 @@ In this app you can get registered, upload your favorite movies and leave some b
   
  ### Login Page:
   ![Login](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/login-page.PNG)
+  
+ ### Create Movie Page:
+  ![Create](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/create-page.PNG)
+  
+ ### Catalog Page:
+  ![Catalog](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/catalog-page.PNG)
+  
+ ### Details Page:
+  ![Details](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/details-page.PNG)
+  
+ ### Edit & Delete section:
+  ![Edit](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/edit-delete-section.PNG)
+  
+ ### Delete section:
+  ![Delete](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/delete-movie-section.PNG)
+  
+ ### Reviews side:
+  ![Review](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/review-side.PNG)
+  
+ ### Profile Page:
+  ![Profile](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/profile-page.PNG)
