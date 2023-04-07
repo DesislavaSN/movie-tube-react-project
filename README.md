@@ -35,4 +35,5 @@ In this app you can get registered, upload your favorite movies and leave some b
  ### Register Page:
   ![Register](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/register-page.PNG)
   
-  
+ ### Login Page:
+  ![Login](https://github.com/DesislavaSN/movie-tube-react-project/raw/main/screenshots/login-page.PNG)
