@@ -29,3 +29,5 @@ In this app you can get registered, upload your favorite movies and leave some b
   
   <h3>Preview</h3>
   
+  ### Home Page:
+  ![Home]([screenshots/home-page.PNG](https://github.com/DesislavaSN/movie-tube-react-project/row/main/screenshots/home-page.PNG))
