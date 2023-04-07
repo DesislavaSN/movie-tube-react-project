@@ -6,8 +6,9 @@ In this app you can get registered, upload your favorite movies and leave some b
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 <h3> Build with <h3>
-  - [Visual Studio Code]
-  - ReactJs
+  
+  - [Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code")
+  - [ReactJS] (https://react.dev/)
   - SoftUni Practice Server
   - NPM Packages:
     - react js
