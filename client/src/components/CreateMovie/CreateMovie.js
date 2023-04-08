@@ -57,7 +57,7 @@ export default function CreateMovie() {
             <div className={styles.form}>
                 <h2>Create Movie</h2>
                 <form className="create-form" onSubmit={onSubmit}>
-                    {error.title && <span className={styles.err}>Title must be at least 3 chars long</span>}
+                    {error.title && <span className={styles.err}>Title is required and must be at least 3 chars long</span>}
                     <input 
                         type="text" 
                         name="title" 
@@ -67,7 +67,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler}
                         onBlur={isValidLength}
                     />
-                    {error.director && <span className={styles.err}>Director's name must be at least 3 chars long</span>}
+                    {error.director && <span className={styles.err}>Director's name is required and must be at least 3 chars long</span>}
                     <input 
                         type="text" 
                         name="director" 
@@ -77,7 +77,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler} 
                         onBlur={isValidLength}   
                     />
-                    {error.genre && <span className={styles.err}>Genre must be at least 3 chars long</span>}
+                    {error.genre && <span className={styles.err}>Genre is required and must be at least 3 chars long</span>}
                     <input 
                         type="text" 
                         name="genre" 
@@ -87,7 +87,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler}  
                         onBlur={isValidLength}   
                     />
-                    {error.country && <span className={styles.err}>Country must be at least 3 chars long</span>}
+                    {error.country && <span className={styles.err}>Country is required and must be at least 3 chars long</span>}
                     <input 
                         type="text" 
                         name="country" 
@@ -97,7 +97,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler}  
                         onBlur={isValidLength}   
                     />
-                    {error.year && <span className={styles.err}>Year must be a positive number</span>}
+                    {error.year && <span className={styles.err}>Year is required and must be a positive number</span>}
                     <input 
                         type="number" 
                         name="year" 
@@ -107,7 +107,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler} 
                         onBlur={isPositive} 
                     />
-                    {error.duration && <span className={styles.err}>Duration must be a positive number</span>}
+                    {error.duration && <span className={styles.err}>Duration is required and must be a positive number</span>}
                     <input 
                         type="number" 
                         name="duration" 
@@ -117,7 +117,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler}  
                         onBlur={isPositive}    
                     />
-                    {error.imageUrl && <span className={styles.err}>The image url must starts with 'http'.</span>}
+                    {error.imageUrl && <span className={styles.err}>The image url is required and must starts with 'http' or '/'.</span>}
                     <input 
                         type="text" 
                         name="imageUrl" 
@@ -127,7 +127,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler}  
                         onBlur={isValidUrl}   
                     />
-                    {error.description && <span className={styles.err}>Description must be at least 3 chars long</span>}
+                    {error.description && <span className={styles.err}>Description is required and must be at least 3 chars long</span>}
                     <textarea 
                         id="description" 
                         name="description" 
@@ -149,7 +149,7 @@ export default function CreateMovie() {
                         onChange={onChangeHandler} 
                         onBlur={isValidLength}
                     ></textarea>
-                    <button type="submit" disabled={!isValid}>post</button>
+                    <button type="submit" disabled={!isValid} className={!isValid ? styles.invalid : ''}>post</button>
                 </form>
             </div>
         </section>
