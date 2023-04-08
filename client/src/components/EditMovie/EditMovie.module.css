@@ -78,4 +78,8 @@ section#edit {
     font-weight: 200;
     font-style: italic;
     font-size: 14px;
-  }
+ }
+
+button.invalid { 
+    background-color: rgb(190, 187, 158);
+}
