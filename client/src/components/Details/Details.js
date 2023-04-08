@@ -79,7 +79,7 @@ export default function Details() {
                         <p>Duration: <span>{movie.duration} min</span></p>
 
                         <div id={styles.detailsCasts}>
-                            <h3>Casts</h3>
+                            <h3>Cast</h3>
                             <span>
                                 <ul>
                                     <li>{movie.casts}</li>
