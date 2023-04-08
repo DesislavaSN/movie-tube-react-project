@@ -142,7 +142,7 @@ export default function CreateMovie() {
                     <textarea 
                         id="casts" 
                         name="casts" 
-                        placeholder="Casts" 
+                        placeholder="Cast" 
                         rows="4" 
                         cols="50"
                         value={formValues.casts}
